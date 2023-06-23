@@ -1,0 +1,11 @@
+Page 1 : Login form [user] [Password] - bouton register (sign in) 
+						-> Page register -> Form [User] [Password] [Password Confirm] -> Bouton
+
+Login check -> Page d'accueil Bienvenue [user] -> Lorem ipsum
+
+Bottom Navbar : [Home] - [Map] - [Log out]
+
+Map page : Carte avec la localisation ou carte de Paris si la loc est désactivée
+
+Bouton log out -> Confirmation -> Oui -> Page Login 
+				  Non -> Rien
