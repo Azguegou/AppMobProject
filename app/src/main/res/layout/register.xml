@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="-43dp"
+    tools:layout_editor_absoluteY="3dp">
+
+    <Button
+        android:id="@+id/connexion"
+        android:layout_width="222dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="58dp"
+        android:text="Vous avez déjà un compte ? Connectez-vous !"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inscription" />
+
+    <EditText
+        android:id="@+id/ConfirmMotDePasse"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="32dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/inscription"
+        app:layout_constraintEnd_toEndOf="@+id/MotDePasse"
+        app:layout_constraintStart_toStartOf="@+id/ConfirmMotDePasseTextView"
+        app:layout_constraintTop_toBottomOf="@+id/ConfirmMotDePasseTextView" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/Identifiant"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="29dp"
+        android:hint="Nom d'utilisateur"
+        app:layout_constraintBottom_toTopOf="@+id/MotDePasseTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userTextView" />
+
+    <TextView
+        android:id="@+id/inscriptionText"
+        android:layout_width="245dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginBottom="30dp"
+        android:text="Inscription"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@+id/userTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/inscription"
+        android:layout_width="280dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="39dp"
+        android:text="Inscription"
+        app:layout_constraintBottom_toTopOf="@+id/connexion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ConfirmMotDePasse" />
+
+    <EditText
+        android:id="@+id/MotDePasse"
+        android:layout_width="274dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="26dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/ConfirmMotDePasseTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MotDePasseTextView" />
+
+    <TextView
+        android:id="@+id/ConfirmMotDePasseTextView"
+        android:layout_width="241dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        android:text="Confirmez votre mot de passe"
+        app:layout_constraintBottom_toTopOf="@+id/ConfirmMotDePasse"
+        app:layout_constraintStart_toStartOf="@+id/MotDePasse"
+        app:layout_constraintTop_toBottomOf="@+id/MotDePasse" />
+
+    <TextView
+        android:id="@+id/MotDePasseTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Saisissez un mot de passe (8 caractères min.)"
+        app:layout_constraintBottom_toTopOf="@+id/MotDePasse"
+        app:layout_constraintEnd_toEndOf="@+id/inscription"
+        app:layout_constraintStart_toStartOf="@+id/MotDePasse"
+        app:layout_constraintTop_toBottomOf="@+id/Identifiant" />
+
+    <TextView
+        android:id="@+id/userTextView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Choisissez un nom d'utilisateur"
+        app:layout_constraintBottom_toTopOf="@+id/Identifiant"
+        app:layout_constraintEnd_toEndOf="@+id/connexion"
+        app:layout_constraintStart_toStartOf="@+id/Identifiant"
+        app:layout_constraintTop_toBottomOf="@+id/inscriptionText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

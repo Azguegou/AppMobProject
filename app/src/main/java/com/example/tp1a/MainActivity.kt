@@ -18,10 +18,15 @@ class MainActivity : AppCompatActivity() {
         // get references
         val btn = findViewById<Button>(R.id.Connexion)
         val id = findViewById<EditText>(R.id.Identifiant)
-        val password = findViewById<EditText>(R.id.MotDePasse)
+        val password = findViewById<EditText>(R.id.ConfirmMotDePasse)
         val logo = findViewById<ImageView>(R.id.imageView2)
+        val inscription = findViewById<Button>(R.id.goToRegister)
 
         // set on-click listener
+        inscription.setOnClickListener {
+            val intent = Intent(this@MainActivity, RegisterActivity::class.java)
+            startActivity(intent)
+        }
         btn.setOnClickListener {
             if (id.length() > 0 && password.length() > 0) {
                 if (password.length() < 8) {
