@@ -2,6 +2,7 @@ package com.example.tp1a
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import android.widget.Button
@@ -16,8 +17,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
         // get references
-        val btn = findViewById<Button>(R.id.Connexion)
-        val id = findViewById<EditText>(R.id.Identifiant)
+        val connexion = findViewById<Button>(R.id.Connexion)
+        val username = findViewById<EditText>(R.id.Identifiant)
         val password = findViewById<EditText>(R.id.ConfirmMotDePasse)
         val logo = findViewById<ImageView>(R.id.imageView2)
         val inscription = findViewById<Button>(R.id.goToRegister)
@@ -27,23 +28,18 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
         }
-        btn.setOnClickListener {
-            if (id.length() > 0 && password.length() > 0) {
-                if (password.length() < 8) {
-                    Toast.makeText(
-                        this@LoginActivity,
-                        "Le mot de passe doit faire au moins 8 caractères.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
+
+        connexion.setOnClickListener {
+            BD.userExists(username.text.toString(), password.text.toString()).thenAccept { exists ->
+                if (exists) {
                     Toast.makeText(this@LoginActivity, "Connexion réussie !", Toast.LENGTH_SHORT)
                         .show()
                     val intent = Intent(this@LoginActivity, SimonActivity::class.java)
-                    intent.putExtra("username", id.text.toString())
+                    intent.putExtra("username", username.text.toString())
                     startActivity(intent)
+                } else {
+                    Toast.makeText(this@LoginActivity, "Connexion échouée.", Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Toast.makeText(this@LoginActivity, "Connexion échouée.", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -55,5 +51,4 @@ class LoginActivity : AppCompatActivity() {
             ).show()
         }
     }
-
 }
