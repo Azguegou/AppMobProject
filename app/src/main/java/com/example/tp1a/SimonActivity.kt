@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import kotlin.random.Random
@@ -34,17 +35,30 @@ class SimonActivity : AppCompatActivity() {
 
     fun party() {
         val nbCarrees = 4
-        var nbTours = 12
+        var nbTours = 5
 
         // Liste du jeu
         val memoryList = ArrayList<Int>()
 
         // Générez les valeurs aléatoires dans memoryList
+        //TODO : enlever cette boucle for à la fin du projet
         for (i in 1..nbTours) {
             memoryList.add(Random.nextInt(1, nbCarrees + 1))
         }
-        
+
+        Toast.makeText(
+            this@SimonActivity,
+            "Retenez cette suite",
+            Toast.LENGTH_SHORT
+        ).show()
+
         clignoterBoutons(memoryList)
+
+        Toast.makeText(
+            this@SimonActivity,
+            "à vous de jouer !",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
 
