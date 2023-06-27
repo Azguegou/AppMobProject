@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import java.sql.Connection
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -24,6 +25,15 @@ class RegisterActivity : AppCompatActivity() {
         connectionButton.setOnClickListener {
             val intent = Intent(this@RegisterActivity, MainActivity::class.java)
             startActivity(intent)
+        }
+
+        inscriptionButton.setOnClickListener {
+            if(username.text.toString() != "" && password.text.toString() == confirmPassword.text.toString()){
+                BD.insertUser(username.text.toString(), password.text.toString())
+                val intent = Intent(this@RegisterActivity, SimonActivity::class.java)
+                intent.putExtra("username", username.text.toString())
+                startActivity(intent)
+            }
         }
 
     }
