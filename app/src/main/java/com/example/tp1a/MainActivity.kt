@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 else {
                     Toast.makeText(this@MainActivity, "Connexion réussie !", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this@MainActivity, ProfilActivity::class.java)
+                    val intent = Intent(this@MainActivity, SimonActivity::class.java)
                     intent.putExtra("username", id.text.toString())
                     startActivity(intent)
                 }
