@@ -6,10 +6,10 @@
     app:startDestination="@id/mainActivity">
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.example.tp1a.MainActivity"
+        android:name="com.example.tp1a.LoginActivity"
         android:label="MainActivity" />
     <activity
         android:id="@+id/profilActivity"
-        android:name="com.example.tp1a.ProfilActivity"
+        android:name="com.example.tp1a.SimonActivity"
         android:label="ProfilActivity" />
 </navigation>
