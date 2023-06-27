@@ -18,6 +18,7 @@ class SimonActivity : AppCompatActivity() {
     private lateinit var btn2: Button
     private lateinit var btn3: Button
     private lateinit var btn4: Button
+    private lateinit var btnJouer: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -29,8 +30,11 @@ class SimonActivity : AppCompatActivity() {
         btn2 = findViewById(R.id.simonButton2)
         btn3 = findViewById(R.id.simonButton3)
         btn4 = findViewById(R.id.simonButton4)
+        btnJouer = findViewById(R.id.buttonJouer)
 
-        party() // Appelez la fonction party() pour démarrer le clignotement des boutons
+        btnJouer.setOnClickListener() {
+            party()
+        }
     }
 
     fun party() {
