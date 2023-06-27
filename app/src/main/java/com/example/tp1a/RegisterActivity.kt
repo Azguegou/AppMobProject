@@ -26,9 +26,6 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             startActivity(intent)
         }
-        inscriptionButton.setOnClickListener {
-            //TODO : Enregistrer en BD les id
-        }
 
         inscriptionButton.setOnClickListener {
             val usernameValue = username.text.toString()

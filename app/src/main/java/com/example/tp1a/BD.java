@@ -1,58 +1,26 @@
 package com.example.tp1a;
 
 import android.util.Log;
-import android.widget.Toast;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class BD {
-    private static final String URL = "jdbc:mysql://localhost:3306/appmob";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
-
-    public static Connection getConnection() {
-        Connection connection = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return connection;
-    }
-
-    public static void closeConnection(Connection connection) {
-        if (connection != null) {
-            try {
-                connection.close();
-                Log.d("BD","Connexion à la base de données fermée !");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+    private static final String DATABASE_PATH = "users";
 
     public static void insertUser(String username, String password) {
-        Connection connection = getConnection();
-        if (connection != null) {
-            try {
-                String query = "INSERT INTO user (id, username, password, score) VALUES (null, ?, ?, 0)";
-                PreparedStatement statement = connection.prepareStatement(query);
-                statement.setString(1, username);
-                statement.setString(2, password);
-                statement.executeUpdate();
-                Log.d("BD","Utilisateur inséré avec succès dans la base de données !");
-                statement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                closeConnection(connection);
-            }
-        }
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference().child(DATABASE_PATH);
+
+        // Generate a unique key for the user
+        String userId = reference.push().getKey();
+
+        // Create a User object with the provided data
+        User user = new User(userId, username, password, 0);
+
+        // Insert the user into the database
+        reference.child(userId).setValue(user)
+                .addOnSuccessListener(aVoid -> Log.d("BD", "Utilisateur inséré avec succès dans la base de données !"))
+                .addOnFailureListener(e -> Log.e("BD", "Erreur lors de l'insertion de l'utilisateur : " + e.getMessage()));
     }
 }
