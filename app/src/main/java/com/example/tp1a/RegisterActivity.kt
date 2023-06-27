@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
+import java.sql.Connection
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -25,8 +26,23 @@ class RegisterActivity : AppCompatActivity() {
             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             startActivity(intent)
         }
+
         inscriptionButton.setOnClickListener {
-            //TODO : Enregistrer en BD les id
+            val usernameValue = username.text.toString()
+            val passwordValue = password.text.toString()
+            val confirmPasswordValue = confirmPassword.text.toString()
+
+            if (passwordValue == confirmPasswordValue) {
+                Thread {
+                    BD.insertUser(usernameValue, passwordValue)
+                }.start()
+
+                val intent = Intent(this@RegisterActivity, SimonActivity::class.java)
+                intent.putExtra("username", usernameValue)
+                startActivity(intent)
+            } else {
+                // Gérer l'erreur de confirmation du mot de passe
+            }
         }
 
     }
