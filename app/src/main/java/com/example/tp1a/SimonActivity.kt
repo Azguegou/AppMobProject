@@ -1,5 +1,6 @@
 package com.example.tp1a
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -19,6 +20,7 @@ class SimonActivity : AppCompatActivity() {
     private lateinit var btn3: Button
     private lateinit var btn4: Button
     private lateinit var btnJouer: Button
+    private lateinit var btnDeco: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -31,9 +33,14 @@ class SimonActivity : AppCompatActivity() {
         btn3 = findViewById(R.id.simonButton3)
         btn4 = findViewById(R.id.simonButton4)
         btnJouer = findViewById(R.id.buttonJouer)
+        btnDeco = findViewById(R.id.buttonDeco)
 
         btnJouer.setOnClickListener() {
             party()
+        }
+        btnDeco.setOnClickListener() {
+            val intent = Intent(this@SimonActivity, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 
