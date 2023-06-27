@@ -23,8 +23,11 @@ class RegisterActivity : AppCompatActivity() {
         val connectionButton = findViewById<Button>(R.id.connexion)
 
         connectionButton.setOnClickListener {
-            val intent = Intent(this@RegisterActivity, MainActivity::class.java)
+            val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             startActivity(intent)
+        }
+        inscriptionButton.setOnClickListener {
+            //TODO : Enregistrer en BD les id
         }
 
         inscriptionButton.setOnClickListener {
