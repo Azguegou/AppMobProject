@@ -28,11 +28,20 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         inscriptionButton.setOnClickListener {
-            if(username.text.toString() != "" && password.text.toString() == confirmPassword.text.toString()){
-                BD.insertUser(username.text.toString(), password.text.toString())
+            val usernameValue = username.text.toString()
+            val passwordValue = password.text.toString()
+            val confirmPasswordValue = confirmPassword.text.toString()
+
+            if (passwordValue == confirmPasswordValue) {
+                Thread {
+                    BD.insertUser(usernameValue, passwordValue)
+                }.start()
+
                 val intent = Intent(this@RegisterActivity, SimonActivity::class.java)
-                intent.putExtra("username", username.text.toString())
+                intent.putExtra("username", usernameValue)
                 startActivity(intent)
+            } else {
+                // Gérer l'erreur de confirmation du mot de passe
             }
         }
 
