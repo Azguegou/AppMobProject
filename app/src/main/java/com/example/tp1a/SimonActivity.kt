@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
@@ -40,11 +39,7 @@ class SimonActivity : AppCompatActivity() {
         btnJouer = findViewById(R.id.buttonJouer)
         btnDeco = findViewById(R.id.buttonDeco)
 
-        // Dans la fonction onCreate()
-        btn1.isEnabled = false
-        btn2.isEnabled = false
-        btn3.isEnabled = false
-        btn4.isEnabled = false
+        disableButtons()
 
 
         btnJouer.setOnClickListener() {
@@ -57,8 +52,10 @@ class SimonActivity : AppCompatActivity() {
     }
 
     fun party() {
+        disableButtons()
+
         val nbCarrees = 4
-        nbTours += 1
+        nbTours++
 
         // Effacer la liste du joueur pour la prochaine manche
         playerList.clear()
@@ -75,23 +72,23 @@ class SimonActivity : AppCompatActivity() {
         //).show()
 
         clignoterBoutons(memoryList)
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            Toast.makeText(
-                this@SimonActivity,
-                "À vous de jouer !",
-                Toast.LENGTH_SHORT
-            ).show()
-
+        val delay = 900L
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
             enableButtonInput()
-        }, (1500L))
+        }, (nbTours * delay))
+    }
 
-
+    private fun disableButtons() {
+        btn1.isClickable = false
+        btn2.isClickable = false
+        btn3.isClickable = false
+        btn4.isClickable = false
     }
 
 
-
     fun clignoterBoutons(memoryList: ArrayList<Int>) {
+        disableButtons()
         val delay = 1000L // délai de 1000ms
         val handler = Handler(Looper.getMainLooper())
 
@@ -131,17 +128,15 @@ class SimonActivity : AppCompatActivity() {
             addToPlayerList(4)
         }
 
-        // Activer les boutons
-        btn1.isEnabled = true
-        btn2.isEnabled = true
-        btn3.isEnabled = true
-        btn4.isEnabled = true
+        btn1.isClickable = true
+        btn2.isClickable = true
+        btn3.isClickable = true
+        btn4.isClickable = true
     }
 
     private fun addToPlayerList(buttonIndex: Int) {
         playerList.add(buttonIndex)
         checkPlayerList()
-
     }
 
     private fun checkPlayerList() {
@@ -159,8 +154,10 @@ class SimonActivity : AppCompatActivity() {
                 "Désolé, la séquence est incorrecte.",
                 Toast.LENGTH_SHORT
             ).show()
+            disableButtons()
             memoryList.clear()
             playerList.clear()
+            nbTours = 1
         } else if (playerList.size == memoryList.size) {
             //suite correte
             party()
