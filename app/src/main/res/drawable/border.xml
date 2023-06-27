@@ -2,6 +2,7 @@
     android:shape="rectangle" >
 
     <stroke
+        android:id="@+id/border"
         android:width="3dp"
         android:color="#000000" />
 
