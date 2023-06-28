@@ -20,15 +20,15 @@
             android:theme="@style/Theme.TP1A">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.TP1A">
+            android:theme="@style/Theme.TP1A"
+            tools:ignore="ExtraText"
+            android:label="Simon"
+            android:icon="@mipmap/simonlogo">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -42,8 +42,6 @@
             android:theme="@style/Theme.TP1A">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
