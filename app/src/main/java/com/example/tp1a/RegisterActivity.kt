@@ -39,6 +39,7 @@ class RegisterActivity : AppCompatActivity() {
 
                 val intent = Intent(this@RegisterActivity, SimonActivity::class.java)
                 intent.putExtra("username", usernameValue)
+                intent.putExtra("score", 0)
                 startActivity(intent)
             } else {
                 // Gérer l'erreur de confirmation du mot de passe

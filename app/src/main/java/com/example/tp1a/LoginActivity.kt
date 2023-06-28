@@ -36,7 +36,10 @@ class LoginActivity : AppCompatActivity() {
                         .show()
                     val intent = Intent(this@LoginActivity, SimonActivity::class.java)
                     intent.putExtra("username", username.text.toString())
-                    startActivity(intent)
+                    BD.getUserScore(username.text.toString()).thenAccept {score ->
+                        intent.putExtra("score", score)
+                        startActivity(intent)
+                    }
                 } else {
                     Toast.makeText(this@LoginActivity, "Connexion échouée.", Toast.LENGTH_SHORT).show()
                 }

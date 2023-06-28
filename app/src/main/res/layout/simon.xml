@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D2DAFF"
-    tools:ignore="HardcodedText" >
+    tools:ignore="HardcodedText">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/simonButton1"
@@ -11,58 +11,75 @@
         android:layout_height="128dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="410dp"
+        android:layout_marginTop="100dp"
         android:background="#B1B2FF" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/simonButton4"
         android:layout_width="128dp"
         android:layout_height="128dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="244dp"
-        android:layout_marginTop="409dp"
+        android:layout_toEndOf="@id/simonButton1"
+        android:layout_alignTop="@id/simonButton1"
+        android:layout_marginStart="48dp"
         android:background="#B1B2FF" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/simonButton3"
         android:layout_width="128dp"
         android:layout_height="128dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/simonButton1"
+        android:layout_marginTop="48dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="601dp"
         android:background="#B1B2FF" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/simonButton2"
         android:layout_width="128dp"
         android:layout_height="128dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="244dp"
-        android:layout_marginTop="601dp"
+        android:layout_toEndOf="@id/simonButton3"
+        android:layout_alignTop="@id/simonButton3"
+        android:layout_marginStart="48dp"
         android:background="#B1B2FF" />
 
     <Button
         android:id="@+id/buttonJouer"
-        android:layout_width="90dp"
-        android:layout_height="45dp"
-
-        android:layout_marginStart="165dp"
-        android:layout_marginTop="320dp"
-
+        android:layout_width="223dp"
+        android:layout_height="67dp"
+        android:layout_below="@id/simonButton3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
         android:text="Jouer" />
 
     <Button
         android:id="@+id/buttonDeco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="760dp"
+        android:layout_below="@id/buttonJouer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
         android:text="Déconnexion" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonDeco"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Nom du joueur"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:layout_below="@+id/username"
+        android:layout_marginTop="11dp"
+        android:gravity="center"
+        android:text="Score en cours"
+        android:textSize="34sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
