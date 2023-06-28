@@ -115,17 +115,56 @@ class SimonActivity : AppCompatActivity() {
     }
 
     private fun enableButtonInput() {
+        val delay = 100L // délai de 1000ms
+        val handler = Handler(Looper.getMainLooper())
+
         btn1.setOnClickListener {
+            it.setBackgroundColor(Color.WHITE)
             addToPlayerList(1)
+            handler.postDelayed({
+                btn1.let {
+                    handler.postDelayed({
+                        it.setBackgroundColor(Color.parseColor("#B1B2FF"))
+
+                    }, delay)
+                }
+            }, (1))
         }
         btn2.setOnClickListener {
+            it.setBackgroundColor(Color.WHITE)
             addToPlayerList(2)
+            handler.postDelayed({
+                btn2.let {
+                    handler.postDelayed({
+                        it.setBackgroundColor(Color.parseColor("#B1B2FF"))
+
+                    }, delay/2)
+                }
+            }, (delay))
         }
         btn3.setOnClickListener {
+            it.setBackgroundColor(Color.WHITE)
             addToPlayerList(3)
+            handler.postDelayed({
+                btn3.let {
+                    handler.postDelayed({
+                        it.setBackgroundColor(Color.parseColor("#B1B2FF"))
+
+                    }, delay/2)
+                }
+            }, (delay))
         }
         btn4.setOnClickListener {
             addToPlayerList(4)
+            handler.postDelayed({
+                btn4.let {
+                    it.setBackgroundColor(Color.WHITE)
+                    handler.postDelayed({
+                        it.setBackgroundColor(Color.parseColor("#B1B2FF"))
+
+                    }, delay/2)
+                }
+            }, (delay))
         }
 
         btn1.isClickable = true
@@ -136,6 +175,7 @@ class SimonActivity : AppCompatActivity() {
 
     private fun addToPlayerList(buttonIndex: Int) {
         playerList.add(buttonIndex)
+
         checkPlayerList()
     }
 
