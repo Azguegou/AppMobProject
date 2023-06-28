@@ -96,7 +96,7 @@
         android:id="@+id/MotDePasseTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Saisissez un mot de passe (8 caractères min.)"
+        android:text="Saisissez un mot de passe"
         app:layout_constraintBottom_toTopOf="@+id/MotDePasse"
         app:layout_constraintEnd_toEndOf="@+id/inscription"
         app:layout_constraintStart_toStartOf="@+id/MotDePasse"

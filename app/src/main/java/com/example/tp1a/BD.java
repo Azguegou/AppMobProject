@@ -70,4 +70,88 @@ public class BD {
 
         return future;
     }
+
+    public static CompletableFuture<Integer> getUserScore(String username) {
+        CompletableFuture<Integer> future = new CompletableFuture<>();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(DATABASE_PATH);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<User> userList = new ArrayList<>();
+                int score = -1;
+
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    User user = userSnapshot.getValue(User.class);
+                    if (user != null) {
+                        userList.add(user);
+                    }
+                }
+
+                for (User user : userList) {
+                    if (user.getUsername().equals(username)) {
+                        score = user.getScore();
+                        break;
+                    }
+                }
+                future.complete(score);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("BD", "Erreur lors de la récupération des utilisateurs : " + databaseError.getMessage());
+                future.completeExceptionally(databaseError.toException());
+            }
+        });
+
+        return future;
+    }
+
+    public static CompletableFuture<Void> updateUserScore(String username, int newScore) {
+        CompletableFuture<Void> future = new CompletableFuture<>();
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference reference = database.getReference(DATABASE_PATH);
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                List<User> userList = new ArrayList<>();
+
+                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+                    User user = userSnapshot.getValue(User.class);
+                    if (user != null) {
+                        userList.add(user);
+                    }
+                }
+
+                for (User user : userList) {
+                    if (user.getUsername().equals(username)) {
+                        // Update the user's score
+                        user.setScore(newScore);
+
+                        // Update the user in the database
+                        reference.child(user.getId()).setValue(user)
+                                .addOnSuccessListener(aVoid -> {
+                                    Log.d("BD", "Score de l'utilisateur mis à jour avec succès !");
+                                    future.complete(null);
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e("BD", "Erreur lors de la mise à jour du score de l'utilisateur : " + e.getMessage());
+                                    future.completeExceptionally(e);
+                                });
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("BD", "Erreur lors de la récupération des utilisateurs : " + databaseError.getMessage());
+                future.completeExceptionally(databaseError.toException());
+            }
+        });
+
+        return future;
+    }
 }
